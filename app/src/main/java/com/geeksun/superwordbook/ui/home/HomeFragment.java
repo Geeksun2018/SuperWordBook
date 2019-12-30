@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -18,19 +19,18 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     private Button translate;
     private EditText input;
-    private TextView output;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         input = (EditText) getActivity().findViewById(R.id.getInput);
-        output = (TextView) getActivity().findViewById(R.id.outputResult);
+
         translate = (Button) getActivity().findViewById(R.id.translate);
         translate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String msg = input.getText().toString();
-                sendMessage(msg);
+                getResultList(msg);
             }
         });
     }
@@ -51,7 +51,7 @@ public class HomeFragment extends Fragment {
         });*/
         return root;
     }
-    private void sendMessage(String msg) {
-        output.setText(msg);
+    private void getResultList(String msg) {
+
     }
 }
