@@ -4,4 +4,9 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="wait_input">#ACACAC</color>
+    <color name="Welcome">#45007E</color>
+    <color name="loginToolbar">#51A8FF</color>
+    <color name="ColorWhite">#FFFFFF</color>
+    <color name="gray_background">#EFEFEF</color>
+    <color name="login_btn_color">#42B4FF</color>
 </resources>
