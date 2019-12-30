@@ -33,32 +33,32 @@ public class HomeFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         input = getActivity().findViewById(R.id.getInput);
-        output = getActivity().findViewById(R.id.outputResult);
+       // output = getActivity().findViewById(R.id.outputResult);
         translate = getActivity().findViewById(R.id.translate);
-        output.setText("Hello World");
-        translate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String word = input.getText().toString();
-                if (word.split(" ").length > 1){
-                    //这是一个句子，应该翻译成中文。
-                }else {
-                    HttpUtil.sendOkHttpRequest("http://10.0.2.2:8080/translateWord?q=" + word, new Callback() {
-                        @Override
-                        public void onFailure(Call call, IOException e) {
-                            //给用户显示网络异常！
-                            e.printStackTrace();
-                        }
-
-                        @Override
-                        public void onResponse(Call call, Response response) throws IOException {
-                            String responseText = response.body().string();
-                            Log.d("Test", "onResponse: "+responseText);
-                        }
-                    });
-                }
-            }
-        });
+        //output.setText("Hello World");
+//        translate.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String word = input.getText().toString();
+//                if (word.split(" ").length > 1){
+//                    //这是一个句子，应该翻译成中文。
+//                }else {
+//                    HttpUtil.sendOkHttpRequest("http://10.0.2.2:8080/translateWord?q=" + word, new Callback() {
+//                        @Override
+//                        public void onFailure(Call call, IOException e) {
+//                            //给用户显示网络异常！
+//                            e.printStackTrace();
+//                        }
+//
+//                        @Override
+//                        public void onResponse(Call call, Response response) throws IOException {
+//                            String responseText = response.body().string();
+//                            Log.d("Test", "onResponse: "+responseText);
+//                        }
+//                    });
+//                }
+//            }
+//        });
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
