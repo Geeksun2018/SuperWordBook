@@ -29,13 +29,28 @@ public class WordAdapter extends ArrayAdapter<Word> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         Word word = getItem(position);
-        View view = LayoutInflater.from(getContext()).inflate(resourceId,parent,false);
-        TextView wordContent = view.findViewById(R.id.wordContent);
-        TextView phoneticSymbol = view.findViewById(R.id.phoneticSymbol);
-        TextView description = view.findViewById(R.id.description);
-        wordContent.setText(word.getWordContent());
-        description.setText(word.getDescription());
-        phoneticSymbol.setText(word.getPhoneticSymbol());
+        View view;
+        ViewHolder viewHolder;
+        if(convertView == null){
+            view = LayoutInflater.from(getContext()).inflate(resourceId,parent,false);
+            viewHolder = new ViewHolder();
+            viewHolder.description = view.findViewById(R.id.description);
+            viewHolder.phoneticSymbol = view.findViewById(R.id.phoneticSymbol);
+            viewHolder.wordContent = view.findViewById(R.id.wordContent);
+            view.setTag(viewHolder);
+        }else{
+            view = convertView;
+            viewHolder = (ViewHolder) view.getTag();
+        }
+        viewHolder.wordContent.setText(word.getWordContent());
+        viewHolder.description.setText(word.getDescription());
+        viewHolder.phoneticSymbol.setText(word.getPhoneticSymbol());
         return view;
+    }
+
+    class ViewHolder{
+        TextView wordContent;
+        TextView phoneticSymbol;
+        TextView description;
     }
 }
