@@ -43,7 +43,7 @@ public class GalleryFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         final Handler handler = new Handler();
-        HttpUtil.sendOkHttpRequest("http://10.0.2.2:8080/getWordBook?uid=1", new Callback() {
+        HttpUtil.sendOkHttpRequest("http://47.107.108.67:8080/getWordBook?uid=1", new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 //给用户显示网络异常！
@@ -65,13 +65,6 @@ public class GalleryFragment extends Fragment {
         galleryViewModel =
                 ViewModelProviders.of(this).get(GalleryViewModel.class);
         View root = inflater.inflate(R.layout.fragment_gallery, container, false);
-        final TextView textView = root.findViewById(R.id.text_gallery);
-        galleryViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
         return root;
     }
 

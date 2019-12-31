@@ -69,7 +69,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 if (word.split(" ").length > 1){
                     //这是一个句子，应该翻译成中文。
                 }else {
-                    HttpUtil.sendOkHttpRequest("http://10.0.2.2:8080/translateWord?uid=1&q=" + word, new Callback() {
+                    HttpUtil.sendOkHttpRequest("http://47.107.108.67:8080/translateWord?uid=1&q=" + word, new Callback() {
                         @Override
                         public void onFailure(Call call, IOException e) {
                             //给用户显示网络异常！
