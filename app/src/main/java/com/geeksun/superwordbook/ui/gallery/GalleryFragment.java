@@ -49,6 +49,7 @@ public class GalleryFragment extends Fragment {
                 //给用户显示网络异常！
                 e.printStackTrace();
             }
+            
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
