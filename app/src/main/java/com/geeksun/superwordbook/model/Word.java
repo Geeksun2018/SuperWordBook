@@ -8,6 +8,10 @@ public class Word {
 
     private String description;
 
+    public Word(){
+
+    }
+
     public Word(String wordContent, String phoneticSymbol, String description) {
         this.wordContent = wordContent;
         this.phoneticSymbol = phoneticSymbol;

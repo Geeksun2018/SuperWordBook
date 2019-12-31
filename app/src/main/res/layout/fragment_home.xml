@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?><androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -33,16 +32,70 @@
         app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/home_content"
+        android:layout_width="wrap_content"
+        android:layout_height="30sp"
+        app:layout_constraintTop_toBottomOf="@id/translate"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="测试"
+        android:layout_marginLeft="16dp"/>
+    <TextView
+        android:id="@+id/home_american_voice"
+        android:layout_width="wrap_content"
+        android:layout_height="30sp"
+        android:text="测试"
+        app:layout_constraintTop_toBottomOf="@id/home_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="16dp"/>
+    <Button
+        android:id="@+id/home_american_radio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/home_content"
+        app:layout_constraintStart_toEndOf="@id/home_american_voice"
+        />
 
-    <include
-        layout="@layout/fragment_item_list"
-        android:layout_width="409dp"
-        android:layout_height="491dp"
+    <TextView
+        android:id="@+id/home_english_voice"
+        android:layout_width="wrap_content"
+        android:layout_height="30sp"
+        android:text="测试"
+        app:layout_constraintTop_toBottomOf="@id/home_content"
+        app:layout_constraintStart_toEndOf="@id/home_american_radio"
+        android:layout_marginLeft="16dp"/>
+
+    <Button
+        android:id="@+id/home_english_radio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/home_content"
+        app:layout_constraintStart_toEndOf="@id/home_english_voice"
+        />
+
+
+<!--    <include-->
+<!--        android:id="@+id/include_word_item_list"-->
+<!--        layout="@layout/fragment_item_list"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="434dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/home_american_voice"-->
+<!--        app:layout_constraintVertical_bias="0.0" />-->
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/include_word_item_list"
+        android:layout_width="match_parent"
+        android:layout_height="431dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/translate"
+        app:layout_constraintTop_toBottomOf="@+id/home_american_voice"
         app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

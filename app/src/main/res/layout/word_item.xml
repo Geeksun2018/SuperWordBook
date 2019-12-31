@@ -20,7 +20,6 @@
             android:textSize="40px"
             android:layout_marginLeft="10dp"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
-
     <TextView
         android:id="@+id/description"
         android:layout_width="wrap_content"
@@ -28,7 +27,5 @@
         android:textSize="40px"
         android:layout_marginLeft="10dp"
         android:text="n.表示问候，惊奇或唤起注意时的用语"/>
-
-
 
 </LinearLayout>
