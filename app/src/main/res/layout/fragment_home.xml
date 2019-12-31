@@ -26,52 +26,64 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="192dp"
+        android:background="@drawable/translate_icon_color"
         android:text="@string/translate"
-        android:textColor="@color/design_default_color_primary_dark"
+        android:textColor="@color/login_btn_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/home_content"
         android:layout_width="wrap_content"
         android:layout_height="30sp"
-        app:layout_constraintTop_toBottomOf="@id/translate"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:text="测试"
-        android:layout_marginLeft="16dp"/>
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/translate" />
+
     <TextView
         android:id="@+id/home_american_voice"
         android:layout_width="wrap_content"
         android:layout_height="30sp"
         android:text="测试"
+        android:gravity="center"
         app:layout_constraintTop_toBottomOf="@id/home_content"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginLeft="16dp"/>
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp" />
+
     <Button
         android:id="@+id/home_american_radio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="28dp"
+        android:background="@mipmap/voice"
+        app:layout_constraintBottom_toTopOf="@+id/home_english_radio"
+        app:layout_constraintStart_toEndOf="@+id/home_american_voice"
         app:layout_constraintTop_toBottomOf="@id/home_content"
-        app:layout_constraintStart_toEndOf="@id/home_american_voice"
-        />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/home_english_voice"
         android:layout_width="wrap_content"
         android:layout_height="30sp"
         android:text="测试"
+        android:gravity="center"
         app:layout_constraintTop_toBottomOf="@id/home_content"
         app:layout_constraintStart_toEndOf="@id/home_american_radio"
-        android:layout_marginLeft="16dp"/>
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp" />
 
     <Button
         android:id="@+id/home_english_radio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/home_content"
+        android:layout_width="30dp"
+        android:layout_height="28dp"
+        android:background="@mipmap/voice"
         app:layout_constraintStart_toEndOf="@id/home_english_voice"
-        />
+        app:layout_constraintTop_toBottomOf="@id/home_content" />
 
 
 <!--    <include-->
