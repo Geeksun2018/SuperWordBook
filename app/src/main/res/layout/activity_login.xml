@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.Login.loginFragments.LoginActivity">
+
+    <include
+        android:id="@+id/include2"
+        layout="@layout/toolbar_layout"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/account_login"
+        android:layout_width="396dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="32dp"
+        android:background="?attr/colorBackgroundFloating"
+        android:ems="10"
+        android:hint="@string/account"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include2" />
+
+    <EditText
+        android:id="@+id/password_login"
+        android:layout_width="396dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/ColorWhite"
+        android:ems="10"
+        android:hint="@string/password"
+        android:importantForAutofill="no"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/btn_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/account_login"
+        app:layout_constraintVertical_bias="0.229" />
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="342dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="412dp"
+        android:background="@color/login_btn_color"
+        android:text="@string/login"
+        android:textColor="@color/ColorWhite"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
