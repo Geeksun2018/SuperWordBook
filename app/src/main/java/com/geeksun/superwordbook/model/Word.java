@@ -1,5 +1,7 @@
 package com.geeksun.superwordbook.model;
 
+import android.widget.Button;
+
 public class Word {
 
     private String wordContent;
@@ -7,7 +9,6 @@ public class Word {
     private String phoneticSymbol;
 
     private String description;
-
     public Word(){
 
     }

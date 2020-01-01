@@ -12,15 +12,21 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MotionEvent;
 
 import com.geeksun.superwordbook.R;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
-    DrawerLayout drawer;//侧边栏主窗口
+
+public class MainActivity extends AppCompatActivity{
+    public static DrawerLayout drawer;//侧边栏主窗口
     NavigationView navigationView;//侧边栏亮色部分
     private AppBarConfiguration mAppBarConfiguration;
+
+    private ArrayList<myFragmentTouchListener> onTouchListeners = new ArrayList<myFragmentTouchListener>(
+            10);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
 
         drawer = findViewById(R.id.drawer_layout);
@@ -70,6 +77,28 @@ public class MainActivity extends AppCompatActivity {
             drawer.closeDrawer(GravityCompat.START);
         }else{
             super.onBackPressed();}
+    }
+
+    public interface myFragmentTouchListener{
+        public boolean onTouch(MotionEvent event);
+    }
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        for (myFragmentTouchListener listener : onTouchListeners) {
+            if(listener != null) {
+                listener.onTouch(ev);
+            }
+        }
+        return super.dispatchTouchEvent(ev);
+    }
+    public void registerMyOnTouchListener(myFragmentTouchListener myOnTouchListener) {
+        onTouchListeners.add(myOnTouchListener);
+    }
+    public void unregisterMyOnTouchListener(myFragmentTouchListener myOnTouchListener) {
+        onTouchListeners.remove(myOnTouchListener) ;
+    }
+    public static  DrawerLayout getDrawer(){
+        return drawer;
     }
 }
 
