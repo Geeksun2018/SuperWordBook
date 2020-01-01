@@ -81,7 +81,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                         public void onResponse(Call call, Response response) throws IOException {
                             String json = response.body().string();
                             JSONObject jsonObject = JSON.parseObject(json);
-                            Log.d("Geek", "onResponse: " +json );
+//                            Log.d("Geek", "onResponse: " +json );
                             wordContentItemStr = jsonObject.getJSONObject("data").getJSONObject("wordItem").get("wordContent").toString();
                             home_american_voice_str = jsonObject.getJSONObject("data").getJSONObject("wordItem").get("englishSignal").toString();
                             home_english_voice_str = jsonObject.getJSONObject("data").getJSONObject("wordItem").get("americanSignal").toString();
@@ -101,15 +101,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-
-
-        /*final TextView textView = root.findViewById(R.id.text_home);
-        homeViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });*/
         return root;
     }
 
