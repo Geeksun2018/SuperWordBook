@@ -34,7 +34,9 @@ import com.geeksun.superwordbook.R;
 import com.geeksun.superwordbook.activity.MainActivity;
 import com.geeksun.superwordbook.adapter.HomeWordAdapter;
 import com.geeksun.superwordbook.adapter.WordAdapter;
+import com.geeksun.superwordbook.config.AppConfig;
 import com.geeksun.superwordbook.util.HttpUtil;
+
 
 import java.io.IOException;
 import java.util.List;
@@ -59,6 +61,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener,Gestu
     private String home_english_voice_str;
     private String wordContentItemStr;
     private String home_american_voice_str;
+
     private List<String> explains;
 
     private GestureDetector gestureDetector;
@@ -86,9 +89,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener,Gestu
                 }
                 else if (word.split(" ").length == 0){
                     //什么都不做
-                }
-                else {
-                    HttpUtil.sendOkHttpRequest("http://47.107.108.67:8080/translateWord?uid=1&q=" + word, new Callback() {
+                } else {
+                    HttpUtil.sendOkHttpRequest(AppConfig.ip +"/translateWord?uid=1&q=" + word, new Callback() {
                         @Override
                         public void onFailure(Call call, IOException e) {
                             //给用户显示网络异常！
@@ -99,6 +101,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener,Gestu
                         public void onResponse(Call call, Response response) throws IOException {
                             String json = response.body().string();
                             JSONObject jsonObject = JSON.parseObject(json);
+//                            Log.d("Geek", "onResponse: " +json );
                             wordContentItemStr = jsonObject.getJSONObject("data").getJSONObject("wordItem").get("wordContent").toString();
                             home_american_voice_str = jsonObject.getJSONObject("data").getJSONObject("wordItem").get("englishSignal").toString();
                             home_english_voice_str = jsonObject.getJSONObject("data").getJSONObject("wordItem").get("americanSignal").toString();

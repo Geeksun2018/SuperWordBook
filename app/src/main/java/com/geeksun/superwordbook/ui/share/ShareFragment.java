@@ -1,5 +1,6 @@
 package com.geeksun.superwordbook.ui.share;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,18 +19,18 @@ public class ShareFragment extends Fragment {
 
     private ShareViewModel shareViewModel;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        shareViewModel =
-                ViewModelProviders.of(this).get(ShareViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_share, container, false);
-        final TextView textView = root.findViewById(R.id.text_share);
-        shareViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-        return root;
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        // 比如发送文本形式的数据内容
+        // 指定发送的内容
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "如想使用本软件请联系孙旺995700257");
+        // 指定发送内容的类型
+        sendIntent.setType("text/plain");
+        startActivity(Intent.createChooser(sendIntent,"Share to..."));
     }
+
 }

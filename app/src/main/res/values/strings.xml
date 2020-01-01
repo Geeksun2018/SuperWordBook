@@ -9,8 +9,8 @@
 
     <string name="menu_home">翻译</string>
     <string name="menu_gallery">单词本</string>
-    <string name="menu_slideshow">手册</string>
-    <string name="menu_tools">Tools</string>
+    <string name="menu_slideshow">收藏</string>
+    <string name="menu_tools">统计</string>
     <string name="menu_share">分享</string>
     <string name="menu_send">联系作者</string>
 
@@ -33,6 +33,7 @@
     <string name="register_wait_input_account">请设置账号...</string>
     <string name="register_wait_input_password">请设置密码...</string>
     <string name="confirm">确定</string>
+    <string name="average">平均查找次数</string>
 
     <drawable name="touching">#FFD4FA39</drawable>
     <drawable name="unTouching">#FFEEFFA7</drawable>

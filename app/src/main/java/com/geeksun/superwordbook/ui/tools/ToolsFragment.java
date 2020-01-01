@@ -2,6 +2,8 @@ package com.geeksun.superwordbook.ui.tools;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +15,16 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.geeksun.superwordbook.R;
+import com.geeksun.superwordbook.config.AppConfig;
+import com.geeksun.superwordbook.model.SearchAmount;
+import com.geeksun.superwordbook.util.HttpUtil;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import lecho.lib.hellocharts.gesture.ContainerScrollType;
@@ -28,27 +37,31 @@ import lecho.lib.hellocharts.model.PointValue;
 import lecho.lib.hellocharts.model.ValueShape;
 import lecho.lib.hellocharts.model.Viewport;
 import lecho.lib.hellocharts.view.LineChartView;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 public class ToolsFragment extends Fragment {
 
     private ToolsViewModel toolsViewModel;
+    private TextView textView;
 
     public LineChartView lineChart;
-    String[] date = {"10-22","11-22","12-22","1-22","6-22","5-23","5-22","6-22","5-23","5-20"};//X轴的标注
-    int[] score= {50,42,90,33,10,74,22,18,79,206};//图表的数据点
+//    String[] date = {"10-22","11-22","12-22","1-22","6-22","5-23","5-22","6-22","5-23","5-20"};//X轴的标注
+//    int[] score= {50,42,90,33,10,74,22,18,79,206};//图表的数据点
+    List<SearchAmount> list;
     //int[] score= {0,0,0,0,0,0,0,0,0,0};
     public List<PointValue> mPointValues = new ArrayList<PointValue>();
     public List<AxisValue> mAxisXValues = new ArrayList<AxisValue>();
+    final Handler handler = new Handler();
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         lineChart = getActivity().findViewById(R.id.line_chart);
-
-        getAxisXLables();//获取x轴的标注
-        getAxisPoints();//获取坐标点
-        initLineChart();//初始化
-
+        textView = getActivity().findViewById(R.id.average_count);
+        initData();
 
     }
 
@@ -60,20 +73,47 @@ public class ToolsFragment extends Fragment {
         return root;
     }
 
+    public void initData(){
+        HttpUtil.sendOkHttpRequest(AppConfig.ip +"/getSearchAmount?uid=1", new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                //给用户显示网络异常！
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String json = response.body().string();
+                JSONObject jsonObject = JSON.parseObject(json);
+                list = jsonObject.getJSONObject("data").getJSONArray("searchAmounts").toJavaList(SearchAmount.class);
+                Collections.sort(list);
+                handler.post(runnableUi);
+            }
+        });
+    }
+
+    public int averageCount(){
+        int count = 0;
+        for(int i = 0;i < list.size();i++){
+            count += list.get(i).getAmount();
+        }
+        return count / list.size();
+    }
+
     /**
      * 设置X 轴的显示
      */
     private void getAxisXLables() {
-        for (int i = 0; i < date.length; i++) {
-            mAxisXValues.add(new AxisValue(i).setLabel(date[i]));
+        for (int i = 0; i < list.size(); i++) {
+            mAxisXValues.add(new AxisValue(i).setLabel(list.get(i).getDate()));
         }
     }
     /**
      * 图表的每个点的显示
      */
     private void getAxisPoints() {
-        for (int i = 0; i < score.length; i++) {
-            mPointValues.add(new PointValue(i, score[i]));
+        for (int i = 0; i < list.size(); i++) {
+            mPointValues.add(new PointValue(i,list.get(i).getAmount()));
         }
     }
 
@@ -122,4 +162,16 @@ public class ToolsFragment extends Fragment {
         v.right = 10;
         lineChart.setCurrentViewport(v);
     }
+
+    Runnable runnableUi = new  Runnable(){
+        @Override
+        public void run() {
+            //更新界面
+            getAxisXLables();//获取x轴的标注
+            getAxisPoints();//获取坐标点
+            initLineChart();//初始化
+            textView.setText(String.valueOf(averageCount()));
+        }
+
+    };
 }

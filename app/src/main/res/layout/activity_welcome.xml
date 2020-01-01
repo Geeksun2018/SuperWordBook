@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/welcome_background"
-    tools:context=".ui.Login.loginFragments.WelcomeActivity">
+    tools:context=".activity.login.WelcomeActivity">
 
     <TextView
         android:id="@+id/welcome"

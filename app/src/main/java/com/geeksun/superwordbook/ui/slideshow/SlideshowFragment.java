@@ -22,6 +22,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.geeksun.superwordbook.R;
 import com.geeksun.superwordbook.adapter.WordAdapter;
+import com.geeksun.superwordbook.config.AppConfig;
 import com.geeksun.superwordbook.model.Word;
 import com.geeksun.superwordbook.util.HttpUtil;
 
@@ -99,7 +100,7 @@ public class SlideshowFragment extends Fragment {
 
 
     public void toSeverDeleteWord(String aimWord){
-        HttpUtil.sendOkHttpRequest("http://47.107.108.67:8080/deleteCollection?uid=1&content="+aimWord, new Callback() {
+        HttpUtil.sendOkHttpRequest(AppConfig.ip + "/deleteCollection?uid=1&content="+aimWord, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 Looper.prepare();

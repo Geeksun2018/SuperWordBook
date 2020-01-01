@@ -1,18 +1,14 @@
-package com.geeksun.superwordbook.ui.Login.loginFragments;
+package com.geeksun.superwordbook.activity.login;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.geeksun.superwordbook.R;
+import com.geeksun.superwordbook.config.AppConfig;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -26,6 +22,7 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
+        AppConfig.getProperties(this);
 
         login = findViewById(R.id.login);
         register = findViewById(R.id.register);
