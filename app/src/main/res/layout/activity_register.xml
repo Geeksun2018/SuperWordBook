@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.Login.loginFragments.RegisterActivity">
+    tools:context=".activity.login.RegisterActivity">
 
     <include
         android:id="@+id/include"

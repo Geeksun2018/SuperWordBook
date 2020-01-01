@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.geeksun.superwordbook.R;
+import com.geeksun.superwordbook.config.AppConfig;
 import com.geeksun.superwordbook.model.SearchAmount;
 import com.geeksun.superwordbook.util.HttpUtil;
 
@@ -60,10 +61,7 @@ public class ToolsFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         lineChart = getActivity().findViewById(R.id.line_chart);
         textView = getActivity().findViewById(R.id.average_count);
-
         initData();
-
-
 
     }
 
@@ -76,7 +74,7 @@ public class ToolsFragment extends Fragment {
     }
 
     public void initData(){
-        HttpUtil.sendOkHttpRequest("http://47.107.108.67:8080/getSearchAmount?uid=1", new Callback() {
+        HttpUtil.sendOkHttpRequest(AppConfig.ip +"/getSearchAmount?uid=1", new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 //给用户显示网络异常！

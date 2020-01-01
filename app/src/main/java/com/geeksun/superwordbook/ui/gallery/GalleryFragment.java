@@ -22,6 +22,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.geeksun.superwordbook.R;
 import com.geeksun.superwordbook.adapter.HomeWordAdapter;
 import com.geeksun.superwordbook.adapter.WordAdapter;
+import com.geeksun.superwordbook.config.AppConfig;
 import com.geeksun.superwordbook.model.Word;
 import com.geeksun.superwordbook.ui.home.HomeFragment;
 import com.geeksun.superwordbook.util.HttpUtil;
@@ -43,7 +44,7 @@ public class GalleryFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         final Handler handler = new Handler();
-        HttpUtil.sendOkHttpRequest("http://47.107.108.67:8080/getWordBook?uid=1", new Callback() {
+        HttpUtil.sendOkHttpRequest(AppConfig.ip +"/getWordBook?uid=1", new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 //给用户显示网络异常！
